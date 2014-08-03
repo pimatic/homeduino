@@ -17,7 +17,7 @@ void dht_command() {
 
     // just the dht 11 sensor read function is different
     int chk;
-    if (dht_type == 1) {
+    if (dht_type == 11) {
         chk = DHT.read11(dht_pin);
     } else {
         chk = DHT.read(dht_pin);

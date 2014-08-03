@@ -1,5 +1,8 @@
 #include <RFControl.h>
 
+void rfcontrol_command_send();
+void rfcontrol_command_receive();
+
 void rfcontrol_setup() {
 
 }
@@ -26,20 +29,55 @@ void rfcontrol_loop() {
 }
 
 void rfcontrol_command() {
-  char *arg;
-  arg = sCmd.next();
+  char* arg = sCmd.next();
   if(arg == NULL) {
     return;
   }
-  if (strcmp(arg, "setup") == 0) {
+  if (strcmp(arg, "send") == 0) {
+    rfcontrol_command_send();
+  } else if (strcmp(arg, "receive") == 0) {
+    rfcontrol_command_receive();
+  }
+}
+
+void rfcontrol_command_receive() {
+  char* arg = sCmd.next();
+  if(arg == NULL) {
+    return;
+  }
+  int interrupt_pin = atoi(arg);
+  RFControl::startReceiving(interrupt_pin);
+  Serial.println("RF receive");
+}
+
+
+void rfcontrol_command_send() {
+  char* arg = sCmd.next();
+  if(arg == NULL) {
+    return;
+  }
+  int transmitter_pin = atoi(arg);
+
+  // read pulse lengths
+  unsigned int buckets[8];
+  for(unsigned int i = 0; i < 8; i++) {
     arg = sCmd.next();
     if(arg == NULL) {
       return;
     }
-    int interrupt_pin = atoi(arg);
-    RFControl::startReceiving(interrupt_pin);
-    Serial.println("RF receiving");
+    buckets[i] = atoi(arg);
   }
+  //read pulse sequence
+  arg = sCmd.next();
+  if(arg == NULL) {
+    return;
+  }
+  unsigned int timings_size = strlen(arg);
+  unsigned int timings[timings_size];
+  for(unsigned int i = 0; i < timings_size; i++) {
+    unsigned int index = arg[i] - '0';
+    timings[i] = buckets[index];
+  }
+  RFControl::sendByTimings(transmitter_pin, timings, timings_size);
+  Serial.println("RF send");
 }
-
-
