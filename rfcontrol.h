@@ -47,7 +47,7 @@ void rfcontrol_command_receive() {
   }
   int interrupt_pin = atoi(arg);
   RFControl::startReceiving(interrupt_pin);
-  Serial.println("RF receive");
+  Serial.println("RF receiving");
 }
 
 
