@@ -1,3 +1,6 @@
-[submodule "lib/Arduino-SerialCommand"]
-	path = lib/Arduino-SerialCommand
+[submodule "libraries/SerialCommand"]
+	path = libraries/SerialCommand
 	url = git@github.com:sweetpi/Arduino-SerialCommand.git
+[submodule "libraries/RFControl"]
+	path = libraries/RFControl
+	url = git@github.com:pimatic/RFControl.git
