@@ -5,6 +5,7 @@ SerialCommand sCmd;
 #include "rfcontrol.h"
 #include "keypad.h"
 #include "ping.h"
+#include "dht.h"
 
 void unrecognized(const char *command);
 
@@ -15,8 +16,9 @@ void setup() {
 	// Setup keypad
 	keypad_setup();
 	// Setup callbacks for SerialCommand commands
-	sCmd.addCommand("R", rfcontrol_command);    
-	sCmd.addCommand("P", ping_command);
+	sCmd.addCommand("RF", rfcontrol_command);    
+	sCmd.addCommand("PING", ping_command);
+	sCmd.addCommand("DHT", dht_command);
 	sCmd.setDefaultHandler(unrecognized);
 	Serial.println("ready");
 }

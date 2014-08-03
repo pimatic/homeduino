@@ -30,7 +30,7 @@ void keypad_setup() {
 void keypad_loop() {
   char keypressed = myKeypad.getKey();
   if (keypressed != NO_KEY) {
-    Serial.print("K ");
+    Serial.print("KP ");
     Serial.write(keypressed);
     Serial.write('\n');
   }

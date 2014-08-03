@@ -1,7 +1,7 @@
 
 void ping_command() {
 	char *arg;
-	Serial.print("P");
+	Serial.print("PING");
 	arg = sCmd.next();
 	if (arg != NULL) {
 		Serial.write(' ');
