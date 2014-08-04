@@ -103,6 +103,11 @@ int dht::read(uint8_t pin)
 // DHTLIB_ERROR_TIMEOUT
 int dht::_readSensor(uint8_t pin, uint8_t wakeupDelay)
 {
+    // fixes first read
+    pinMode(pin, OUTPUT);
+    digitalWrite(pin, HIGH);
+    delayMicroseconds(40);
+
     // INIT BUFFERVAR TO RECEIVE DATA
     uint8_t mask = 128;
     uint8_t idx = 0;

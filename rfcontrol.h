@@ -31,29 +31,34 @@ void rfcontrol_loop() {
 void rfcontrol_command() {
   char* arg = sCmd.next();
   if(arg == NULL) {
+    argument_error();
     return;
   }
   if (strcmp(arg, "send") == 0) {
     rfcontrol_command_send();
   } else if (strcmp(arg, "receive") == 0) {
     rfcontrol_command_receive();
+  } else {
+    argument_error();
   }
 }
 
 void rfcontrol_command_receive() {
   char* arg = sCmd.next();
   if(arg == NULL) {
+    argument_error();
     return;
   }
   int interrupt_pin = atoi(arg);
   RFControl::startReceiving(interrupt_pin);
-  Serial.println("RF receiving");
+  Serial.print("ACK\n");
 }
 
 
 void rfcontrol_command_send() {
   char* arg = sCmd.next();
   if(arg == NULL) {
+    argument_error();
     return;
   }
   int transmitter_pin = atoi(arg);
@@ -63,6 +68,7 @@ void rfcontrol_command_send() {
   for(unsigned int i = 0; i < 8; i++) {
     arg = sCmd.next();
     if(arg == NULL) {
+      argument_error();
       return;
     }
     buckets[i] = atoi(arg);
@@ -70,6 +76,7 @@ void rfcontrol_command_send() {
   //read pulse sequence
   arg = sCmd.next();
   if(arg == NULL) {
+    argument_error();
     return;
   }
   unsigned int timings_size = strlen(arg);
@@ -79,5 +86,5 @@ void rfcontrol_command_send() {
     timings[i] = buckets[index];
   }
   RFControl::sendByTimings(transmitter_pin, timings, timings_size);
-  Serial.println("RF send");
+  Serial.print("ACK\n");
 }

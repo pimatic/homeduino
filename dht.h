@@ -6,11 +6,13 @@ dht DHT;
 void dht_command() {
     char* arg = sCmd.next();
     if(arg == NULL) {
+        argument_error();
         return;
     }
     int dht_type = atoi(arg);
     arg = sCmd.next();
     if(arg == NULL) {
+        argument_error();
         return;
     }
     int dht_pin = atoi(arg);
@@ -25,28 +27,20 @@ void dht_command() {
 
     switch (chk) {
         case DHTLIB_OK:
-            Serial.print("DHT data ");
-            Serial.print(dht_pin);
-            Serial.write(' ');
+            Serial.print("ACK ");
             Serial.print(DHT.temperature, 1);
             Serial.write(' ');
             Serial.print(DHT.humidity, 1);
             Serial.write('\n');
             break;
         case DHTLIB_ERROR_CHECKSUM:
-            Serial.print("DHT checksum_error ");
-            Serial.print(dht_pin);
-            Serial.write('\n');
+            Serial.print("ERR checksum_error\n");
             break;
         case DHTLIB_ERROR_TIMEOUT:
-            Serial.print("DHT timeout_error ");
-            Serial.print(dht_pin);
-            Serial.write('\n');
+            Serial.print("ERR timeout_error\n");
             break;
         default:
-            Serial.print("DHT unknown_error ");
-            Serial.print(dht_pin);
-            Serial.write('\n');
+            Serial.print("ERR unknown_error\n");
             break;
     }
 }
