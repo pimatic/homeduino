@@ -19,7 +19,6 @@ void rfcontrol_loop() {
           Serial.print(buckets[i]);
           Serial.write(' ');
       }
-      Serial.write(' ');
       for(unsigned int i=0; i < timings_size; i++) {
           Serial.write('0' + timings[i]);
       }
