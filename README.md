@@ -4,46 +4,47 @@ homeduino
 Arduino library for home automation. The Library can be used to use a Arduino compatible board for home automation task via serial connection.
 
 Flashing
-========
+--------
+
 You can eithter import all libraries in `libraries` into your Arduino IDE and open the `homeduino.ino` sketch or you can compile and flash using the `Makefile` (recommended).
 
 The Makefile uses [Arduino.mk](https://github.com/sudar/Arduino-Makefile) so be sure it is installed:
 
-´´´bash
+```bash
 sudo apt-get install arduino-mk
-´´´
+```
 
 Edit the `Makefile` to use the right `BOARD_TAG` and `MONITOR_PORT`. You can list all available `BOARD_TAG`s with: `make show_boards`.
 
 You can now cimpile it by running `make` or compile and upload it with:
 
-´´´bash
+```bash
 make upload
-´´´
+```
 
 Serial communication
-====================
+------------------------
 
 You can use the serial monitor of the arduino IDE or the `screen` command.
 
 Run 
 
-´´´bash
+```bash
 make monitor
-´´´
+```
 
 Type in your message and press `Ctrl+Return`. You can exit it with `Ctrl+a` and then `k`. Keep in mind that it does not echo what you type.
 
 Commands
-========
+--------
 
 All commands send to homeduino are accepted with `ACK` or rejected with `ERR`. homeduino prints an `ready` message on serial port open if it is ready to receive commands.
 
 ### PING
 
-´´´
+```
 PING message
-´´´
+```
 
 Sends back a string, can be used to check if the connection is working.
 Example: `PING hello`
