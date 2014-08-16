@@ -47,6 +47,7 @@ PING message
 ```
 
 Sends back a string, can be used to check if the connection is working.
+
 Example: `PING hello`
 
 
@@ -57,10 +58,14 @@ RF receive interrupt_pin
 ```
 
 Starts receiving 433 mhz RF signals on interrupt pin `interrupt_pin` using [RFControl](https://github.com/pimatic/RFControl). `interrupt_pin` can be `0` or `1`.
+
 Example: `RF receive 0`
 
-When an RF signal is received it prints a message to the serial port: `RF receive 453 1992 88 9228 0 0 0 0 01020102020201020101010101010102010101010202010202020202010102010102020203`
+When an RF signal is received it prints a message to the serial port: 
 
+```
+RF receive 453 1992 88 9228 0 0 0 0 01020102020201020101010101010102010101010202010202020202010102010102020203`
+```
 
 ### DHT
 
@@ -69,6 +74,7 @@ DHT type digital_pin
 ```
 
 Reads a DHT temperature sensor of `type` on pin `pin` using [DHTlib](http://playground.arduino.cc//Main/DHTLib).
+
 Example: `DHT 22 3`
 
 Responds with: `ACK temperature humidity` or one of `ERR checksum_error`, `ERR timeout_error`, `ERR unknown_error`.
