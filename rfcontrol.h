@@ -3,10 +3,6 @@
 void rfcontrol_command_send();
 void rfcontrol_command_receive();
 
-void rfcontrol_setup() {
-
-}
-
 void rfcontrol_loop() {
   if(RFControl::hasData()) {
       unsigned int *timings;

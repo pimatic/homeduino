@@ -19,10 +19,6 @@ void unrecognized(const char *command);
 
 void setup() {
 	Serial.begin(9600);
-	// Setup rfcontrol
-	rfcontrol_setup();
-	// Setup keypad
-	keypad_setup();
 	// Setup callbacks for SerialCommand commands
 	sCmd.addCommand("DR", digital_read_command);
 	sCmd.addCommand("DW", digital_write_command);
@@ -32,6 +28,7 @@ void setup() {
 	sCmd.addCommand("RF", rfcontrol_command);    
 	sCmd.addCommand("PING", ping_command);
 	sCmd.addCommand("DHT", dht_command);
+  sCmd.addCommand("K", keypad_command);
 	sCmd.setDefaultHandler(unrecognized);
 	Serial.print("ready\r\n");
 }
