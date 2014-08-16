@@ -33,7 +33,7 @@ void setup() {
 	sCmd.addCommand("PING", ping_command);
 	sCmd.addCommand("DHT", dht_command);
 	sCmd.setDefaultHandler(unrecognized);
-	Serial.print("ready\n");
+	Serial.print("ready\r\n");
 }
 
 void loop() {
@@ -55,7 +55,7 @@ void digital_read_command() {
   	int val = digitalRead(pin);
   	Serial.print("ACK ");
   	Serial.write('0' + val);
-  	Serial.write('\n');
+  	Serial.print("\r\n");
 }
 
 void analog_read_command() {
@@ -68,7 +68,7 @@ void analog_read_command() {
   	int val = digitalRead(pin);
   	Serial.print("ACK ");
   	Serial.print(val);
-  	Serial.write('\n');
+  	Serial.print("\r\n");
 }
 
 void digital_write_command() {
@@ -85,7 +85,7 @@ void digital_write_command() {
   	}
   	int val = atoi(arg);
   	digitalWrite(pin, val);
-  	Serial.print("ACK\n");
+  	Serial.print("ACK\r\n");
 }
 
 void analog_write_command() {
@@ -102,7 +102,7 @@ void analog_write_command() {
   	}
   	int val = atoi(arg);
   	analogWrite(pin, val);
-  	Serial.print("ACK\n");
+  	Serial.print("ACK\r\n");
 }
 
 void pin_mode_command() {
@@ -121,13 +121,13 @@ void pin_mode_command() {
 	// OUTPUT 0x1
   	int mode = atoi(arg);
   	pinMode(pin, mode);
-    Serial.print("ACK\n");	
+    Serial.print("ACK\r\n");	
 }
 
 void argument_error() {
-	Serial.print("ERR argument_error\n");
+	Serial.print("ERR argument_error\r\n");
 }
 // This gets set as the default handler, and gets called when no other command matches.
 void unrecognized(const char *command) {
-	Serial.print("ERR unknown_command\n");
+	Serial.print("ERR unknown_command\r\n");
 }

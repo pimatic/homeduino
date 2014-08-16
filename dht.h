@@ -31,16 +31,16 @@ void dht_command() {
             Serial.print(DHT.temperature, 1);
             Serial.write(' ');
             Serial.print(DHT.humidity, 1);
-            Serial.write('\n');
+            Serial.print("\r\n");
             break;
         case DHTLIB_ERROR_CHECKSUM:
-            Serial.print("ERR checksum_error\n");
+            Serial.print("ERR checksum_error\r\n");
             break;
         case DHTLIB_ERROR_TIMEOUT:
-            Serial.print("ERR timeout_error\n");
+            Serial.print("ERR timeout_error\r\n");
             break;
         default:
-            Serial.print("ERR unknown_error\n");
+            Serial.print("ERR unknown_error\r\n");
             break;
     }
 }

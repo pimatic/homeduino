@@ -22,7 +22,7 @@ void rfcontrol_loop() {
       for(unsigned int i=0; i < timings_size; i++) {
           Serial.write('0' + timings[i]);
       }
-      Serial.write('\n');
+      Serial.print("\r\n");
       RFControl::continueReceiving();
     }
 }
@@ -50,7 +50,7 @@ void rfcontrol_command_receive() {
   }
   int interrupt_pin = atoi(arg);
   RFControl::startReceiving(interrupt_pin);
-  Serial.print("ACK\n");
+  Serial.print("ACK\r\n");
 }
 
 
@@ -85,5 +85,5 @@ void rfcontrol_command_send() {
     timings[i] = buckets[index];
   }
   RFControl::sendByTimings(transmitter_pin, timings, timings_size);
-  Serial.print("ACK\n");
+  Serial.print("ACK\r\n");
 }

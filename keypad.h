@@ -32,6 +32,6 @@ void keypad_loop() {
   if (keypressed != NO_KEY) {
     Serial.print("KP ");
     Serial.write(keypressed);
-    Serial.write('\n');
+    Serial.print("\r\n");
   }
 }

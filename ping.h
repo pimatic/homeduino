@@ -7,5 +7,5 @@ void ping_command() {
 		Serial.write(' ');
 		Serial.print(arg);
 	}
-	Serial.write('\n');
+	Serial.print("\r\n");
 }
