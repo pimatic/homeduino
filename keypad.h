@@ -7,6 +7,10 @@
 Keypad* myKeypad = NULL;
 
 void keypad_command(){
+  if(myKeypad != NULL) {
+    Serial.print("ERR\r\n");
+    return;
+  }
 
   const byte numRows=4; //number of rows on the keypad
   const byte numCols=4; //number of columns on the keypad

@@ -18,7 +18,7 @@ void unrecognized(const char *command);
 
 
 void setup() {
-	Serial.begin(9600);
+	Serial.begin(115200);
 	// Setup callbacks for SerialCommand commands
 	sCmd.addCommand("DR", digital_read_command);
 	sCmd.addCommand("DW", digital_write_command);
