@@ -17,8 +17,8 @@ void dht_command() {
     }
     int dht_pin = atoi(arg);
 
-    // just the dht 11 sensor read function is different
     int chk;
+    // just the dht 11 sensor read function is different
     if (dht_type == 11) {
         chk = DHT.read11(dht_pin);
     } else {
