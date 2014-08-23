@@ -64,8 +64,17 @@ Example: `RF receive 0`
 When an RF signal is received it prints a message to the serial port: 
 
 ```
-RF receive 453 1992 88 9228 0 0 0 0 01020102020201020101010101010102010101010202010202020202010102010102020203`
+RF receive 453 1992 88 9228 0 0 0 0 01020102020201020101010101010102010101010202010202020202010102010102020203
 ```
+
+```
+RF send digital_pin repeats b0 b1 b2 b3 b4 b5 b6 b7 pulse_sequence
+```
+
+Send an rf signal by its buckets and pulse sequence using [RFControl](https://github.com/pimatic/RFControl).
+
+Example: `RF send 4 3 453 1992 88 9228 0 0 0 0 01020102020201020101010101010102010101010202010202020202010102010102020203`
+
 
 ### DHT
 
