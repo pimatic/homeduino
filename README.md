@@ -1,7 +1,7 @@
 homeduino
 =========
 
-Arduino library for home automation. The Library can be used to use a Arduino compatible board for home automation task via serial connection.
+Arduino library for home automation. The Library can be used on a Arduino compatible board for home automation task via serial connection and in combination with [pimatic](https://github.com/pimatic/pimatic) and the [pimatic-homeduino](https://github.com/pimatic/pimatic-homeduino) plugin.
 
 Flashing
 --------
