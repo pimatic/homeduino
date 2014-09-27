@@ -14,6 +14,7 @@ The Makefile uses [Arduino.mk](https://github.com/sudar/Arduino-Makefile) so be 
 The arduino-mk version that comes with raspbian on the raspberry pi is to old, so you have to install it manually:
 
 ```bash
+sudo apt-get install arduino-core avr-libc avrdude binutils-avr gcc-avr libconfig-yaml-perl libftdi1 libyaml-perl
 cd /usr/share/
 sudo git clone https://github.com/sudar/Arduino-Makefile.git arduino
 ```
