@@ -5,7 +5,9 @@ void argument_error();
 SerialCommand sCmd;
 
 #include "rfcontrol.h"
+#ifdef KEYPAD_ENABLED
 #include "keypad.h"
+#endif
 #include "ping.h"
 #include "dht.h"
 
@@ -28,7 +30,9 @@ void setup() {
 	sCmd.addCommand("RF", rfcontrol_command);    
 	sCmd.addCommand("PING", ping_command);
 	sCmd.addCommand("DHT", dht_command);
+  #ifdef KEYPAD_ENABLED
   sCmd.addCommand("K", keypad_command);
+  #endif
 	sCmd.setDefaultHandler(unrecognized);
 	Serial.print("ready\r\n");
 }
@@ -38,8 +42,10 @@ void loop() {
 	sCmd.readSerial();
 	// handle rf control receiving
 	rfcontrol_loop();
+  #ifdef KEYPAD_ENABLED
 	// handle keypad keypress
 	keypad_loop();
+  #endif
 }
 
 void digital_read_command() {
