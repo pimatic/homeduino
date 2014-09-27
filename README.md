@@ -3,6 +3,7 @@ homeduino
 
 Arduino library for home automation. The Library can be used on a Arduino compatible board for home automation task via serial connection and in combination with [pimatic](https://github.com/pimatic/pimatic) and the [pimatic-homeduino](https://github.com/pimatic/pimatic-homeduino) plugin.
 
+
 Flashing
 --------
 
@@ -10,8 +11,22 @@ You can eithter import all libraries in `libraries` into your Arduino IDE and op
 
 The Makefile uses [Arduino.mk](https://github.com/sudar/Arduino-Makefile) so be sure it is installed:
 
+The arduino-mk version that comes with raspbian on the raspberry pi is to old, so you have to install it manually:
+
+```bash
+cd /usr/share/
+sudo git clone https://github.com/sudar/Arduino-Makefile.git arduino
+```
+
+On other debian based systems it can be easily installed using `apt-get`:
+
 ```bash
 sudo apt-get install arduino-mk
+```
+Then clone the homeduino repository with all submodules:
+
+```bash
+git clone --recursive https://github.com/pimatic/homeduino.git
 ```
 
 Edit the `Makefile` to use the right `BOARD_TAG` and `MONITOR_PORT`. You can list all available `BOARD_TAG`s with: `make show_boards`.
