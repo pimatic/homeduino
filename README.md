@@ -9,21 +9,13 @@ Flashing
 
 You can eithter import all libraries in `libraries` into your Arduino IDE and open the `homeduino.ino` sketch or you can compile and flash using the `Makefile` (recommended).
 
-The Makefile uses [Arduino.mk](https://github.com/sudar/Arduino-Makefile) so be sure it is installed:
-
-The arduino-mk version that comes with raspbian on the raspberry pi is to old, so you have to install it manually:
+The Makefile uses [Arduino.mk](https://github.com/sudar/Arduino-Makefile). Because the arduino-mk version that comes with raspbian on the raspberry pi is to old, 
+arduino-mk comes bundled as git submpodule with this repository.
 
 ```bash
 sudo apt-get install arduino-core avr-libc avrdude binutils-avr gcc-avr libconfig-yaml-perl libftdi1 libyaml-perl screen
-cd /usr/share/
-sudo git clone https://github.com/sudar/Arduino-Makefile.git arduino
 ```
 
-On other debian based systems it can be easily installed using `apt-get`:
-
-```bash
-sudo apt-get install arduino-mk
-```
 Then clone the homeduino repository with all submodules:
 
 ```bash

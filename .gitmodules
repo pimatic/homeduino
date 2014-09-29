@@ -4,3 +4,6 @@
 [submodule "libraries/RFControl"]
 	path = libraries/RFControl
 	url = git@github.com:pimatic/RFControl.git
+[submodule "arduino-mk"]
+	path = arduino-mk
+	url = git@github.com:sweetpi/Arduino-Makefile.git
