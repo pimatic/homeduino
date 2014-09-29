@@ -13,7 +13,7 @@ The Makefile uses [Arduino.mk](https://github.com/sudar/Arduino-Makefile). Becau
 arduino-mk comes bundled as git submpodule with this repository.
 
 ```bash
-sudo apt-get install arduino-core avr-libc avrdude binutils-avr gcc-avr libconfig-yaml-perl libftdi1 libyaml-perl screen
+sudo apt-get install arduino-core avr-libc avrdude binutils-avr gcc-avr libconfig-yaml-perl libftdi1 libyaml-perl screen python-serial
 ```
 
 Then clone the homeduino repository with all submodules:
@@ -24,7 +24,7 @@ git clone --recursive https://github.com/pimatic/homeduino.git
 
 Edit the `Makefile` to use the right `BOARD_TAG` and `MONITOR_PORT`. You can list all available `BOARD_TAG`s with: `make show_boards`.
 
-You can now cimpile it by running `make` or compile and upload it with:
+You can now compile it by running `make` or compile and upload it with:
 
 ```bash
 make upload
