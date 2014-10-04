@@ -15,6 +15,7 @@ void digital_read_command();
 void digital_write_command();
 void analog_read_command();
 void analog_write_command();
+void reset_command();
 void pin_mode_command();
 void unrecognized(const char *command);
 
@@ -30,6 +31,7 @@ void setup() {
 	sCmd.addCommand("RF", rfcontrol_command);    
 	sCmd.addCommand("PING", ping_command);
 	sCmd.addCommand("DHT", dht_command);
+  sCmd.addCommand("RESET", reset_command);
   #ifdef KEYPAD_ENABLED
   sCmd.addCommand("K", keypad_command);
   #endif
@@ -127,6 +129,11 @@ void pin_mode_command() {
     Serial.print("ACK\r\n");	
 }
 
+void reset_command() {
+  RFControl::stopReceiving();
+  Serial.print("ready\r\n");
+}
+
 void argument_error() {
 	Serial.print("ERR argument_error\r\n");
 }
@@ -134,3 +141,4 @@ void argument_error() {
 void unrecognized(const char *command) {
 	Serial.print("ERR unknown_command\r\n");
 }
+
