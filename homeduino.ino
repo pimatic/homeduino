@@ -11,6 +11,8 @@ SerialCommand sCmd;
 #include "ping.h"
 #include "dht.h"
 
+#define stop_receiving_while_sending
+
 void digital_read_command();
 void digital_write_command();
 void analog_read_command();
