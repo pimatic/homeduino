@@ -1,5 +1,8 @@
 #include <RFControl.h>
 
+
+int interrupt_pin = -1;
+
 void rfcontrol_command_send();
 void rfcontrol_command_receive();
 
@@ -44,7 +47,7 @@ void rfcontrol_command_receive() {
     argument_error();
     return;
   }
-  int interrupt_pin = atoi(arg);
+  interrupt_pin = atoi(arg);
   RFControl::startReceiving(interrupt_pin);
   Serial.print("ACK\r\n");
 }
@@ -87,6 +90,12 @@ void rfcontrol_command_send() {
     unsigned int index = arg[i] - '0';
     timings[i] = buckets[index];
   }
+  #ifdef stop_receiving_while_sending
+  RFControl::stopReceiving();
+  #endif
   RFControl::sendByTimings(transmitter_pin, timings, timings_size, repeats);
+  #ifdef stop_receiving_while_sending
+  RFControl::startReceiving(interrupt_Pin)
+  #endif
   Serial.print("ACK\r\n");
 }
