@@ -70,7 +70,7 @@ void analog_read_command() {
     	return;
   	}
   	int pin = atoi(arg);
-  	int val = digitalRead(pin);
+  	int val = analogRead(pin);
   	Serial.print("ACK ");
   	Serial.print(val);
   	Serial.print("\r\n");
