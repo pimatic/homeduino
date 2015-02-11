@@ -1,3 +1,10 @@
+homeduino-dst
+=========
+
+This is a homeduino fork that includes talking to Dallas OneWire temperature sensors like ds18b20.
+
+For now I'm abusing the DHT command from pimatic-homeduino. Once I also add a new command to pimatic-homeduino, I will introduce a new command here too.
+
 homeduino
 =========
 
