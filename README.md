@@ -1,10 +1,3 @@
-homeduino-dst
-=========
-
-This is a homeduino fork that includes talking to Dallas OneWire temperature sensors like ds18b20.
-
-For now I'm abusing the DHT command from pimatic-homeduino. Once I also add a new command to pimatic-homeduino, I will introduce a new command here too.
-
 homeduino
 =========
 
@@ -106,6 +99,16 @@ Reads a DHT temperature sensor of `type` on pin `pin` using [DHTlib](http://play
 Example: `DHT 22 3`
 
 Responds with: `ACK temperature humidity` or one of `ERR checksum_error`, `ERR timeout_error`, `ERR unknown_error`.
+
+### DST
+
+```
+DHT type digital_pin
+```
+Reads a DST temperature sensor. The OneWire sensor needs to be connected to digital pin 2.
+
+Example `DST`
+Responds with: `ACK temperature`.
 
 ### DR, DW, AR, AW, PM
 
