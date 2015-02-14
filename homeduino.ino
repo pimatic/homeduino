@@ -165,8 +165,8 @@ void dst_command(){
     double temp = sensors.getTempCByIndex(0); 
 
     Serial.print("ACK ");
-    Serial.print(temp);
-    Serial.print(" 1 \r\n");
+    Serial.print(temp, 1);
+    Serial.print("\r\n");
 }
 
 
