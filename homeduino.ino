@@ -41,7 +41,7 @@ void setup() {
 	sCmd.addCommand("PM", pin_mode_command);
 	sCmd.addCommand("RF", rfcontrol_command);    
 	sCmd.addCommand("PING", ping_command);
-	sCmd.addCommand("DHT", dst_command);
+	sCmd.addCommand("DHT", dht_command);
 	sCmd.addCommand("DST", dst_command);
 	sCmd.addCommand("RESET", reset_command);
 #ifdef KEYPAD_ENABLED
@@ -156,11 +156,11 @@ void unrecognized(const char *command) {
 
 void dst_command(){
 
-    char* arg = sCmd.next();
-    if(arg == NULL) {
-        argument_error();
-        return;
-    }
+//    char* arg = sCmd.next();
+//    if(arg == NULL) {
+//        argument_error();
+//        return;
+//    }
     sensors.requestTemperatures(); 
     double temp = sensors.getTempCByIndex(0); 
 
