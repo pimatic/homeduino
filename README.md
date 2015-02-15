@@ -103,7 +103,7 @@ Responds with: `ACK temperature humidity` or one of `ERR checksum_error`, `ERR t
 ### DST
 
 ```
-DHT type digital_pin
+DST
 ```
 Reads a DST temperature sensor. The OneWire sensor needs to be connected to digital pin 2.
 
