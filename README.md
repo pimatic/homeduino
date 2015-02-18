@@ -107,6 +107,7 @@ DST sensors
 Returns all connected temperature sensors connected to digital pin 12.
 
 Example `DST sensors`
+
 Responds with: `ACK sensors [addresses]`.
 
 
@@ -116,6 +117,7 @@ DST [address]
 Reads a DST temperature sensor. The OneWire sensors need to be connected to digital pin 12.
 
 Example 'DST 104CFAB50008008E'
+
 Responds with "ACK 20.1"
 
 
