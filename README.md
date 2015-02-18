@@ -103,12 +103,21 @@ Responds with: `ACK temperature humidity` or one of `ERR checksum_error`, `ERR t
 ### DST
 
 ```
-DST
+DST [address]
 ```
-Reads a DST temperature sensor. The OneWire sensor needs to be connected to digital pin 2.
+Reads a DST temperature sensor. The OneWire sensors need to be connected to digital pin 12.
 
-Example `DST`
-Responds with: `ACK temperature`.
+Example 'DST 104CFAB50008008E'
+Responds with "ACK 20.1"
+
+```
+DST sensors
+```
+Returns all connected temperature sensors connected to digital pin 12.
+
+Example `DST sensors`
+Responds with: `ACK sensors [addresses]`.
+
 
 ### DR, DW, AR, AW, PM
 
