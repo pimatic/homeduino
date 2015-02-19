@@ -7,9 +7,3 @@
 [submodule "arduino-mk"]
 	path = arduino-mk
 	url = https://github.com/sweetpi/Arduino-Makefile.git
-[submodule "libraries/Arduino-Temperature-Control-Library"]
-	path = libraries/Arduino-Temperature-Control-Library
-	url = https://github.com/milesburton/Arduino-Temperature-Control-Library.git
-[submodule "libraries/OneWire"]
-	path = libraries/OneWire
-	url = https://github.com/PaulStoffregen/OneWire.git

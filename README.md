@@ -100,16 +100,6 @@ Example: `DHT 22 3`
 
 Responds with: `ACK temperature humidity` or one of `ERR checksum_error`, `ERR timeout_error`, `ERR unknown_error`.
 
-### DST
-
-```
-DST
-```
-Reads a DST temperature sensor. The OneWire sensor needs to be connected to digital pin 2.
-
-Example `DST`
-Responds with: `ACK temperature`.
-
 ### DR, DW, AR, AW, PM
 
 *  digital read: `DR pin`
