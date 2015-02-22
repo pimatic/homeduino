@@ -103,12 +103,19 @@ Responds with: `ACK temperature humidity` or one of `ERR checksum_error`, `ERR t
 ### DST
 
 ```
-DST
+DST onewire_pin sensor_number precision 
 ```
-Reads a DST temperature sensor. The OneWire sensor needs to be connected to digital pin 2.
+`onewire_pin` can be any free pin (normally 5 to 12).  
+`sensor_number` is 0, 1, 2...  
+`precision` can be 9 to 12 (9 is lower precision, 12 is high precision 0.06ºC and slower). 9 is better if you have many sensors or do not need much accuracy.
 
-Example `DST`
-Responds with: `ACK temperature`.
+Example: `DST 5 0 9` ask temperature for the sensor number 0 at onewire bus connected to pin 5 with precision 9. 
+
+Responds with `ACK temperature sensor_number sensors_address `. 
+Reads a DST temperature sensor in ºC and say also the sensor number and the sensor address . 
+
+Note.-Convert Celsius to Fahrenheit can be done in pimatic once received the data: 
+"processing": "($ value * 9/5) +32"
 
 ### DR, DW, AR, AW, PM
 
