@@ -2,8 +2,6 @@
 #include <OneWire.h>
 #include <DallasTemperature.h>
 
-#define ONE_WIRE_BUS 2
-
 void argument_error();
 
 SerialCommand sCmd;
@@ -25,8 +23,7 @@ void pin_mode_command();
 void unrecognized(const char *command);
 void dst_command();
 
-OneWire oneWire(ONE_WIRE_BUS);
-
+OneWire oneWire(99);                 // Setup a oneWire instance - use dummy pin here
 DallasTemperature sensors(&oneWire);
 
 void setup() {
@@ -156,17 +153,77 @@ void unrecognized(const char *command) {
 
 void dst_command(){
 
-//    char* arg = sCmd.next();
-//    if(arg == NULL) {
-//        argument_error();
-//        return;
-//    }
-    sensors.requestTemperatures(); 
-    double temp = sensors.getTempCByIndex(0); 
+  // param1 is oneWire_pin
+  char* arg = sCmd.next();
+  if (arg == NULL) {
+    argument_error();
+    return;
+  }
+  int oneWire_pin = atoi(arg);
 
+  // param2 is sensor_number
+  arg = sCmd.next();
+  if (arg == NULL) {
+    argument_error();
+    return;
+  }
+  int sensor_number = atoi(arg);
+
+  // param3 is precision
+  arg = sCmd.next();
+  if (arg == NULL) {
+    argument_error();
+    return;
+  }
+  int precision = atoi(arg);
+
+  //-----------------
+
+  OneWire oneWire(oneWire_pin);                // Setup a oneWire instance - use real pin
+  DallasTemperature sensors(&oneWire);         // Pass our oneWire reference to Dallas Temperature
+  sensors.begin();                             // Start up temp sensor
+  sensors.setResolution(precision);            // 9 bit is better, aprox. 100ms to data adquire
+                                               // 12 bit is high precision: 0.06 deg C, but slow (750ms)
+                                               
+  sensors.requestTemperatures(); 
+  double temp = sensors.getTempCByIndex(sensor_number); 
+
+  //-----
+  // response without check errors would be:
+  //  Serial.print("ACK ");
+  //  Serial.print(temp, 1);
+  //  Serial.print("\r\n");
+  //-----
+  // response with check errors and address sensor:
+  int numberOfDevices = sensors.getDeviceCount();
+  if (numberOfDevices == 0) {
+    Serial.print("ERR No devices connected to the oneWire_pin\r\n");
+  } else if (sensor_number + 1 > numberOfDevices) {
+    Serial.print("ERR Error sensor_number\r\n");
+  } else if (precision < 9 or precision > 12) {
+    Serial.print("ERR Error precision\r\n");
+  } else if (temp == DEVICE_DISCONNECTED) {   // DEVICE_DISCONNECTED = -127.00
+    Serial.print("ERR Error device disconnected\r\n");
+  } else {
     Serial.print("ACK ");
     Serial.print(temp, 1);
+    //*(2)
+    Serial.print(" ");
+    //Serial.print(" ---- sensor_number=");
+    Serial.print(sensor_number);
+    Serial.print(" ");
+    //Serial.print(" sensor_address=");
+    DeviceAddress sensor_address;
+    sensors.getAddress(sensor_address, sensor_number);
+    for (uint8_t i = 0; i < 8; i++)
+    {
+      if (sensor_address[i] < 16) Serial.print("0");
+      Serial.print(sensor_address[i], HEX);
+    }
+    //*(2)
     Serial.print("\r\n");
+  }
+  //-----
 }
 
 
