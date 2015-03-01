@@ -73,7 +73,7 @@ void rfcontrol_command_send() {
       argument_error();
       return;
     }
-    buckets[i] = atoi(arg);
+    buckets[i] = atoi(arg); 
   }
   //read pulse sequence
   arg = sCmd.next();
@@ -81,12 +81,6 @@ void rfcontrol_command_send() {
     argument_error();
     return;
   }
-  unsigned int timings_size = strlen(arg);
-  unsigned int timings[timings_size];
-  for(unsigned int i = 0; i < timings_size; i++) {
-    unsigned int index = arg[i] - '0';
-    timings[i] = buckets[index];
-  }
-  RFControl::sendByTimings(transmitter_pin, timings, timings_size, repeats);
+  RFControl::sendByCompressedTimings(transmitter_pin, buckets, arg, repeats);
   Serial.print("ACK\r\n");
 }
