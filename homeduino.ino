@@ -4,12 +4,11 @@ void argument_error();
 
 SerialCommand sCmd;
 
-#include "rfcontrol.h"
+#include "rfcontrol_command.h"
 #ifdef KEYPAD_ENABLED
-#include "keypad.h"
+#include "keypad_command.h"
 #endif
-#include "ping.h"
-#include "dht.h"
+#include "dht_command.h"
 
 void digital_read_command();
 void digital_write_command();
@@ -17,6 +16,7 @@ void analog_read_command();
 void analog_write_command();
 void reset_command();
 void pin_mode_command();
+void ping_command();
 void unrecognized(const char *command);
 
 
@@ -128,6 +128,19 @@ void pin_mode_command() {
   	pinMode(pin, mode);
     Serial.print("ACK\r\n");	
 }
+
+
+void ping_command() {
+  char *arg;
+  Serial.print("PING");
+  arg = sCmd.next();
+  if (arg != NULL) {
+    Serial.write(' ');
+    Serial.print(arg);
+  }
+  Serial.print("\r\n");
+}
+
 
 void reset_command() {
   RFControl::stopReceiving();
