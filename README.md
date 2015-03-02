@@ -30,6 +30,17 @@ You can now compile it by running `make` or compile and upload it with:
 make upload
 ```
 
+DS18B20 Support
+---------------
+
+If you want to connect a DS18B20 sensor to your arduino you have to checkout the `onewire` branch before `make upload`:
+
+```
+git checkout onewire
+```
+
+**The onewire library disables global interrupts, this could lead to worse receiving performance!**
+
 Serial communication
 ------------------------
 
