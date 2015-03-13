@@ -37,6 +37,7 @@ If you want to connect a DS18B20 sensor to your arduino you have to checkout the
 
 ```
 git checkout onewire
+git submodule update --init --recursive
 ```
 
 **The onewire library disables global interrupts, this could lead to worse receiving performance!**
