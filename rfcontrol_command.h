@@ -9,10 +9,12 @@ void rfcontrol_loop() {
       unsigned int timings_size;
       RFControl::getRaw(&timings, &timings_size);
       unsigned int buckets[8];
+      unsigned int pulse_length_divider = RFControl::getPulseLengthDivider();
       RFControl::compressTimings(buckets, timings, timings_size);
       Serial.print("RF receive ");
       for(unsigned int i=0; i < 8; i++) {
-          Serial.print(buckets[i]);
+          unsigned long bucket = buckets[i] * pulse_length_divider;
+          Serial.print(bucket);
           Serial.write(' ');
       }
       for(unsigned int i=0; i < timings_size; i++) {
@@ -66,14 +68,14 @@ void rfcontrol_command_send() {
   int repeats = atoi(arg);
 
   // read pulse lengths
-  unsigned int buckets[8];
+  unsigned long buckets[8];
   for(unsigned int i = 0; i < 8; i++) {
     arg = sCmd.next();
     if(arg == NULL) {
       argument_error();
       return;
     }
-    buckets[i] = atoi(arg); 
+    buckets[i] = strtoul(arg, NULL, 10); 
   }
   //read pulse sequence
   arg = sCmd.next();
