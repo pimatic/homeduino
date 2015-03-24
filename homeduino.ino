@@ -1,4 +1,7 @@
 #include <SerialCommand.h>
+#include <RFControl.h>
+#include <DHTlib.h>
+#include <SerialCommand.h>
 
 void argument_error();
 
@@ -9,8 +12,6 @@ SerialCommand sCmd;
 #include "keypad_command.h"
 #endif
 #include "dht_command.h"
-
-#define stop_receiving_while_sending
 
 void digital_read_command();
 void digital_write_command();

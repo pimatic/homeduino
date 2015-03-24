@@ -13,12 +13,12 @@ void rfcontrol_loop() {
   if(in_raw_mode){
     if(RFControl::existNewDuration()){
       Serial.print(RFControl::getLastDuration());
-      Serial.write(' ');
+      Serial.print(", ");
       static byte line=0;
       line++;
       if(line>=16){
         line=0;
-        Serial.write('\n');
+        Serial.print(",\n");
       }
     }
   }
