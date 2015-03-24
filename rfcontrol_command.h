@@ -18,7 +18,7 @@ void rfcontrol_loop() {
       line++;
       if(line>=16){
         line=0;
-        Serial.print(",\n");
+        Serial.write('\n');
       }
     }
   }
