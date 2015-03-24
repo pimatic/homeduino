@@ -12,7 +12,7 @@ bool in_raw_mode = false;
 void rfcontrol_loop() {
   if(in_raw_mode){
     if(RFControl::existNewDuration()){
-      Serial.print(RFControl::getLastDuration());
+      Serial.print(RFControl::getLastDuration() * RFControl::getPulseLengthDivider());
       Serial.print(", ");
       static byte line=0;
       line++;
