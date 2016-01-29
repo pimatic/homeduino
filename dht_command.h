@@ -2,6 +2,25 @@
 #include <DHTlib.h>
 
 dht DHT;
+#define DHTITERATIONS 3
+#define DHTDELAY 400
+
+int iterations = DHTITERATIONS;
+
+int readDHT(int dht_type, int dht_pin){
+    int chk;
+    // just the dht 11 sensor read function is different
+    if (dht_type == 11) {
+        chk = DHT.read11(dht_pin);
+    } else {
+        chk = DHT.read(dht_pin);
+    }
+    return chk;
+}
+
+void setDhtIterations(int i){
+    iterations=i;
+}
 
 void dht_command() {
     char* arg = sCmd.next();
@@ -16,13 +35,12 @@ void dht_command() {
         return;
     }
     int dht_pin = atoi(arg);
-
+    
     int chk;
-    // just the dht 11 sensor read function is different
-    if (dht_type == 11) {
-        chk = DHT.read11(dht_pin);
-    } else {
-        chk = DHT.read(dht_pin);
+    for(int i=0;i<iterations;i++){
+        chk=readDHT(dht_type,dht_pin);
+        if(chk==DHTLIB_OK){break;}
+        delay(DHTDELAY);
     }
 
     switch (chk) {
