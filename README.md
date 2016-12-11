@@ -7,10 +7,10 @@ Arduino library for home automation. The Library can be used on a Arduino compat
 Flashing
 --------
 
-You can eithter import all libraries in `libraries` into your Arduino IDE and open the `homeduino.ino` sketch or you can compile and flash using the `Makefile` (recommended).
+You can either import all libraries in `libraries` into your Arduino IDE and open the `homeduino.ino` sketch or you can compile and flash using the `Makefile` (recommended).
 
 The Makefile uses [Arduino.mk](https://github.com/sudar/Arduino-Makefile). Because the arduino-mk version that comes with raspbian on the raspberry pi is to old, 
-arduino-mk comes bundled as git submpodule with this repository.
+arduino-mk comes bundled as git submodule with this repository.
 
 ```bash
 sudo apt-get install arduino-core avr-libc avrdude binutils-avr gcc-avr libconfig-yaml-perl libftdi1 libyaml-perl screen python-serial
@@ -58,7 +58,7 @@ Type in your message and press `Ctrl+Return`. You can exit it with `Ctrl+a` and 
 Commands
 --------
 
-All commands send to homeduino are accepted with `ACK` or rejected with `ERR`. homeduino prints an `ready` message on serial port open if it is ready to receive commands.
+All commands sent to homeduino are accepted with `ACK` or rejected with `ERR`. Homeduino prints an `ready` message on serial port open if it is ready to receive commands.
 
 ### PING
 
@@ -122,6 +122,6 @@ Responds with: `ACK temperature humidity` or one of `ERR checksum_error`, `ERR t
 
 Example: `DR 4`
 
-Resonds with `ACK` or `ACK value`. 
+Responds with `ACK` or `ACK value`. 
 
 
