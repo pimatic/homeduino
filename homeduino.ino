@@ -1,6 +1,6 @@
 #include <SerialCommand.h>
 #include <RFControl.h>
-#include <DHTlib.h>
+#include <dht.h>
 
 void argument_error();
 

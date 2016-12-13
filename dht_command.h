@@ -1,5 +1,5 @@
+#include <dht.h>
 
-#include <DHTlib.h>
 
 dht DHT;
 
@@ -38,6 +38,15 @@ void dht_command() {
             break;
         case DHTLIB_ERROR_TIMEOUT:
             Serial.print("ERR timeout_error\r\n");
+            break;
+        case DHTLIB_ERROR_CONNECT:
+            Serial.print("Connect error\r\n");
+            break;
+        case DHTLIB_ERROR_ACK_L:
+            Serial.print("Ack Low error\r\n");
+            break;
+        case DHTLIB_ERROR_ACK_H:
+            Serial.print("Ack High error\r\n");
             break;
         default:
             Serial.print("ERR unknown_error\r\n");
